@@ -1,0 +1,36 @@
+flask db init (make migrations)
+flask db migrate (make migration script)
+flask db upgrade (implement migrations)
+flask run
+
+>>> u = User(username='john', email='john@example.com')
+>>> db.session.add(u)
+>>> db.session.commit()
+
+>>> users = User.query.all()
+>>> users
+[<User john>, <User susan>]
+>>> for u in users:
+...     print(u.id, u.username)
+...
+1 john
+2 susan
+
+>>> u = User.query.get(1)
+>>> p = Post(body='my first post!', author=u)
+>>> db.session.add(p)
+>>> db.session.commit()
+
+flask shell
+python -m smtpd -n -c DebuggingServer localhost:8025
+
+from flask_mail import Message
+from app import mail
+msg = Message('test subject', sender="abenteau@gmail.com",
+recipients=['rebe01@dfki.de'])
+msg.body = 'text body'
+msg.html = '<h1>HTML body</h1>'
+mail.send(msg)
+
+SENDGRID API TOKEN
+SG.B00JSKFRQ0iveApKn44Stw.gQsdA5DEB1RMA0R4nlacbrTBGUKK8ReI14YlFcSSbR8
